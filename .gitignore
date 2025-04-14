@@ -1,3 +1,6 @@
-data/
+_data/
 notebooks/logs/
-notebooks/results
+notebooks/results/
+src/logs/
+src/results/
+__pycache__
