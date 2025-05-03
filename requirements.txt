@@ -1,4 +1,7 @@
+torch
 transformers
 datasets
 seaborn
 scikit-learn
+fastapi[standard]
+pydantic
