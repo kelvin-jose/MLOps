@@ -106,7 +106,7 @@ Test the endpoint
 
 - Add more integrations to make the pipeline robust
 
-- **Become successful**
+- Become successful
 
 
 ## License
