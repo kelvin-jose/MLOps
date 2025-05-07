@@ -5,7 +5,7 @@ class Train:
     LEARNING_RATE = 2e-5
     TRAIN_BATCH_SIZE = 16
     EVAL_BATCH_SIZE = 16
-    TRAIN_EPOCHS = 8
+    TRAIN_EPOCHS = 1
     WEIGHT_DECAY = 0.01
     LOGGING_STEPS = 5
     LOGGING_STRATEGY = "steps"
