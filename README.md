@@ -37,6 +37,13 @@ project/
 │   └── start.sh
 └── scripts/                 # TODO: CI/CD related scripts
 ```
+## Features
+
+- Data **download** and **preprocessing** steps
+- A clear **training script** (```train.py```)
+- A basic **serving layer** with **FastAPI** + **Docker**
+- **Model artifacts** stored in ```results/```
+
 ## Run Locally
 
 ### Model Training
