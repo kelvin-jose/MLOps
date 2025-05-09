@@ -10,6 +10,7 @@ My goal is to train and serve a RoBERTa-Base model on a classification problem. 
 project/
 ├── README.md                # High-level project overview
 ├── .gitignore               # Git ignore rules
+├── Makefile                 # Makefile
 ├── requirements.txt         # Python package dependencies
 ├── data/                    # Data folders for different stages
 │   ├── raw/                 # Original unmodified data from external sources
@@ -27,13 +28,17 @@ project/
 │   │   ├── config.py        # Model configuration
 │   │   └── utils.py         # Contains code for evaluation
 │   ├── serving/             # Deployment layer code for inference
+│   │   ├── test_model_load.py # Test case for model loading 
+│   │   └── test_tokenizer.py  # Test case for tokenization
+│   ├── tests/               # Test cases
 │   │   ├── app.py           # FastAPI app exposing the prediction endpoints
 │   │   └── predict.py       # Prediction logic (loading and serving the model)
 │   ├── logs/                # TensorFlow logs directory
 │   ├── results/             # Trained model checkpoints will be saved here
 ├── train.py                 # Traing script
 ├── docker/                  # Docker-related files for containerizing the serving
-│   ├── Dockerfile
+│   ├── Dockerfile.serve     # Dockerfile for the serving image
+│   ├── Dockerfile.train     # Dockerfile for the training image
 │   └── start.sh
 └── scripts/                 # TODO: CI/CD related scripts
 ```
@@ -74,13 +79,7 @@ Start training
 To see the training logs
 
 ```bash
-  tensorboard --logdir=./dir
-```
-
-To see the training logs
-
-```bash
-  tensorboard --logdir=./dir
+  tensorboard --logdir=./logs
 ```
 
 ### Serving
