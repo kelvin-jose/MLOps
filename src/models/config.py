@@ -14,6 +14,7 @@ class Train:
     USE_BF16 = True
     CUDA = True
 
+
 class Model:
     NAME = "distilroberta-base"
     NUM_CLASSES = 6
