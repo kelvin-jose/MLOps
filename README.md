@@ -92,7 +92,7 @@ Model training
 To see the training logs
 
 ```bash
-  tensorboard --logdir=./logs
+  tensorboard --logdir=./src/logs
 ```
 
 ### Serving
