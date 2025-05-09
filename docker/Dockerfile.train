@@ -1,0 +1,15 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY ./requirements.txt .
+COPY ./src/train.py ./train.py
+COPY ./src/data ./data
+COPY ./src/models ./models
+RUN mkdir -p /app/logs
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENV MODEL_OUTPUT_DIR=/app/results
+
+ENTRYPOINT ["python", "train.py"]
