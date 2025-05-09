@@ -10,6 +10,7 @@ My goal is to train and serve a RoBERTa-Base model on a classification problem. 
 project/
 ├── README.md                # High-level project overview
 ├── .gitignore               # Git ignore rules
+├── Makefile                 # Makefile
 ├── requirements.txt         # Python package dependencies
 ├── data/                    # Data folders for different stages
 │   ├── raw/                 # Original unmodified data from external sources
@@ -27,22 +28,27 @@ project/
 │   │   ├── config.py        # Model configuration
 │   │   └── utils.py         # Contains code for evaluation
 │   ├── serving/             # Deployment layer code for inference
+│   │   ├── test_model_load.py # Test case for model loading 
+│   │   └── test_tokenizer.py  # Test case for tokenization
+│   ├── tests/               # Test cases
 │   │   ├── app.py           # FastAPI app exposing the prediction endpoints
 │   │   └── predict.py       # Prediction logic (loading and serving the model)
 │   ├── logs/                # TensorFlow logs directory
 │   ├── results/             # Trained model checkpoints will be saved here
 ├── train.py                 # Traing script
 ├── docker/                  # Docker-related files for containerizing the serving
-│   ├── Dockerfile
+│   ├── Dockerfile.serve     # Dockerfile for the serving image
+│   ├── Dockerfile.train     # Dockerfile for the training image
 │   └── start.sh
 └── scripts/                 # TODO: CI/CD related scripts
 ```
 ## Features
 
-- Data **download** and **preprocessing** steps
-- A clear **training script** (```train.py```)
-- A basic **serving layer** with **FastAPI** + **Docker**
-- **Model artifacts** stored in ```results/```
+- New ```docker/Dockerfile.train``` to **containerize** training
+- A ```Makefile``` to **standardize** local dev commands
+- ```black``` for auto code-formatting
+- ```flake8``` for lint testing
+- ```pytest``` to run minimal test cases
 
 ## Run Locally
 
@@ -62,38 +68,38 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  pip install -r requirements.txt
+  make install
 ```
 
-Start training
+Code auto-formatting
 
 ```bash
-  python src/train.py
+  make format
+```
+
+Code lint test
+
+```bash
+  make lint
+```
+
+Model training
+
+```bash
+  make docker-train
 ```
 
 To see the training logs
 
 ```bash
-  tensorboard --logdir=./dir
-```
-
-To see the training logs
-
-```bash
-  tensorboard --logdir=./dir
+  tensorboard --logdir=./logs
 ```
 
 ### Serving
-Build the docker image
+Building and serving the docker image
 
 ```bash
-  docker build -t roberta-api -f docker/Dockerfile .
-```
-
-Run the container
-
-```bash
-  docker run -e MODEL_ID=checkpoint-1 -p 8000:8000 roberta-api
+  make serve
 ```
 
 Test the endpoint

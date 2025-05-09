@@ -1,12 +1,9 @@
 import models.config as config
-from transformers import RobertaTokenizer
 from transformers import RobertaForSequenceClassification
 
 
-def download():
-    tokenizer = RobertaTokenizer.from_pretrained(config.Model.NAME)
+def test_model_load():
     model = RobertaForSequenceClassification.from_pretrained(
         config.Model.NAME, num_labels=config.Model.NUM_CLASSES
     )
-    print("[INFO] Tokenizer and model files are now downloaded.")
-    return tokenizer, model
+    assert model is not None

@@ -5,8 +5,10 @@ from serving.predict import predict
 
 app = FastAPI()
 
+
 class TextInput(BaseModel):
     text: str
+
 
 @app.post("/predict")
 def classify(input: TextInput):
