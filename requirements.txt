@@ -1,7 +1,12 @@
 torch
-transformers
+transformers[torch]
+tensorboard
+tensorboardX
 datasets
 seaborn
 scikit-learn
 fastapi[standard]
 pydantic
+pytest
+flake8
+black
