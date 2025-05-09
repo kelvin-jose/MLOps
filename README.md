@@ -44,10 +44,11 @@ project/
 ```
 ## Features
 
-- Data **download** and **preprocessing** steps
-- A clear **training script** (```train.py```)
-- A basic **serving layer** with **FastAPI** + **Docker**
-- **Model artifacts** stored in ```results/```
+- New ```docker/Dockerfile.train``` to **containerize** training
+- A ```Makefile``` to **standardize** local dev commands
+- ```black``` for auto code-formatting
+- ```flake8``` for lint testing
+- ```pytest``` to run minimal test cases
 
 ## Run Locally
 
