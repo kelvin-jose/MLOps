@@ -67,13 +67,25 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  pip install -r requirements.txt
+  make install
 ```
 
-Start training
+Code auto-formatting
 
 ```bash
-  python src/train.py
+  make format
+```
+
+Code lint test
+
+```bash
+  make lint
+```
+
+Model training
+
+```bash
+  make docker-train
 ```
 
 To see the training logs
@@ -83,16 +95,10 @@ To see the training logs
 ```
 
 ### Serving
-Build the docker image
+Building and serving the docker image
 
 ```bash
-  docker build -t roberta-api -f docker/Dockerfile .
-```
-
-Run the container
-
-```bash
-  docker run -e MODEL_ID=checkpoint-1 -p 8000:8000 roberta-api
+  make serve
 ```
 
 Test the endpoint
