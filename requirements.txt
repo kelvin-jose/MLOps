@@ -10,3 +10,4 @@ pydantic
 pytest
 flake8
 black
+mlflow>=2.0.0
