@@ -18,3 +18,10 @@ class Train:
 class Model:
     NAME = "distilroberta-base"
     NUM_CLASSES = 6
+
+
+class Track:
+    EXPERIMENT_ID = "roberta-emotion-classifier"
+    URI = "http://host.docker.internal:5000"
+    REGISTER = True
+    MODEL_NAME = "roberta-emotion-model"
