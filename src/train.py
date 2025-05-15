@@ -3,11 +3,15 @@ from data import preprocess
 from models import download as model_download
 from models import utils
 from models.config import Train
+from models.config import Track
 
+import mlflow
 from transformers import Trainer
 from transformers import TrainingArguments
 from datasets import DatasetDict
 
+mlflow.set_tracking_uri(Track.URI)
+mlflow.set_experiment(Track.EXPERIMENT_ID)
 
 dataset = data_download.download()
 tokenizer, model = model_download.download()
@@ -47,6 +51,22 @@ trainer = Trainer(
     compute_metrics=utils.compute_metrics,
 )
 
-trainer.train()
+with mlflow.start_run():
+    mlflow.log_param("model_checkpoint", Train.OUTPUT_DIR)
+    mlflow.log_param("learning_rate", Train.LEARNING_RATE)
+    mlflow.log_param("train_batch_size", Train.TRAIN_BATCH_SIZE)
+    mlflow.log_param("evaluation_batch_size", Train.EVAL_BATCH_SIZE)
+    mlflow.log_param("epochs", Train.TRAIN_EPOCHS)
+    mlflow.log_param("weight_decay", Train.WEIGHT_DECAY)
+    trainer.train()
 
-trainer.evaluate()
+    eval_metrics = trainer.evaluate()
+    mlflow.log_metrics(eval_metrics)
+
+    mlflow.log_artifacts(Train.OUTPUT_DIR, artifact_path="model")
+
+    if Track.REGISTER:
+        model_uri = f"runs:/{mlflow.active_run().info.run_id}/model"
+        mlflow.register_model(model_uri, Track.MODEL_NAME)
+
+
