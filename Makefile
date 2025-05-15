@@ -17,7 +17,11 @@ train:
 
 docker-train:
 	docker build -t roberta-train -f docker/Dockerfile.train .
-	docker run --rm -v ./src/results:/app/results -v ./src/logs:/app/logs roberta-train
+	docker run --rm -v ./src/results:/app/results \
+					-v ./src/logs:/app/logs \
+					--add-host=host.docker.internal:host-gateway \
+					roberta-train
+	
 
 serve:
 	docker build -t roberta-api -f docker/Dockerfile.serve .
