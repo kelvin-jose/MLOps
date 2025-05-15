@@ -94,6 +94,12 @@ Code lint test
   make lint
 ```
 
+Start mlflow local server
+
+```bash
+  mlflow server --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 5000
+```
+
 Model training
 
 ```bash
