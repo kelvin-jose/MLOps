@@ -39,10 +39,15 @@ project/
 ├── docker/                  # Docker-related files for containerizing the serving
 │   ├── Dockerfile.serve     # Dockerfile for the serving image
 │   ├── Dockerfile.train     # Dockerfile for the training image
-│   └── start.sh
+│   ├── start-serve.sh     
+│   └── start-train.sh
 └── scripts/                 # TODO: CI/CD related scripts
 ```
 ## Features
+
+### Branch: exp-track
+- **Experiment** and **model tracking** using ```mlflow```
+
 ### Branch: mvp-upgrade
 - New ```docker/Dockerfile.train``` to **containerize** training
 - A ```Makefile``` to **standardize** local dev commands
