@@ -4,3 +4,4 @@ notebooks/results/
 src/logs/
 src/results/
 __pycache__
+*.db
